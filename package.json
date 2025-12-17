@@ -8,7 +8,7 @@
     "dev:watch": "tsx -watch ./src/index.ts"
   },
   "bin": {
-    "encrypt": "./dist/index.js"
+    "cli-encrypt": "./dist/index.js"
   },
   "keywords": [],
   "author": "",
