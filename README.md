@@ -5,7 +5,7 @@ CLI tool to encrypt and decrypt files.
 ## How to use?
 
 ```bash
-cli-encrypt -i <input-path> -o <output-path> -p <password>
+cli-encrypt -i <input-path> -o <output-path>
 ```
 
 ## Upcoming features
