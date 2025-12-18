@@ -5,7 +5,7 @@
 - aliases (`enc`, `dec`)
 - Deafult output file naming (`.enc`, `.dec`)
 - Interactive mode (`inquirer`, `readline`)
-  - password input
+  - password input ✅
   - encryption type
 
 ---
