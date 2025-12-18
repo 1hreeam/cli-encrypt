@@ -12,7 +12,7 @@ cli-encrypt -i <input-path> -o <output-path>
 
 - Logging modes (`--verbose` `--silent`)
 - Deafult output file naming (`.enc`, `.dec`)
-- Interactive mode (inquirer, readline)
+- Interactive mode (inquirer, readline) ✅
 - Large files support (rn reading the whole file into memory)
 - Compression
 

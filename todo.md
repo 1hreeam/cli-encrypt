@@ -1,12 +1,10 @@
 # TODO
 
-- Logging (`chalk` + `ora`)
+- Logging (`chalk` + `ora`) ✅
 - Logging modes (`--verbose` `--silent`)
-- aliases (`enc`, `dec`)
-- Deafult output file naming (`.enc`, `.dec`)
-- Interactive mode (`inquirer`, `readline`)
-  - password input ✅
-  - encryption type
+- aliases (`enc`, `dec`) ✅
+- Deafult output file naming (`.enc`, `.dec`) or optional
+- Interactive mode (`inquirer`, `readline`) ✅
 
 ---
 
