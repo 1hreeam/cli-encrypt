@@ -6,9 +6,10 @@ import { encryptFile, decryptFile } from "./crypto.js";
 export function encryptCommand(program: Command) {
     program
         .command("encrypt")
+        .alias("e")
+        .alias("enc")
         .requiredOption("-i, --input <file>", "Input path")
         .requiredOption("-o, --output <file>", "Output path")
-        // .requiredOption("-p, --password <password>", "Password for encryption")
         .action(async (options) => {
             const inputPath = path.resolve(process.cwd(), options.input)
             const outputPath = path.resolve(process.cwd(), options.output)
@@ -21,7 +22,6 @@ export function encryptCommand(program: Command) {
                     mask: true
                 }
             ])
-            // console.log(answer.password);
             
             encryptFile(inputPath, outputPath, answer.password)
         })
@@ -30,9 +30,10 @@ export function encryptCommand(program: Command) {
 export function decryptCommand(program: Command) {
     program
         .command("decrypt")
+        .alias("d")
+        .alias("dec")
         .requiredOption("-i, --input <file>", "Input path")
         .requiredOption("-o, --output <file>", "Output path")
-        // .requiredOption("-p, --password <password>", "Password for decryption")
         .action(async (options) => {
             const inputPath = path.resolve(process.cwd(), options.input)
             const outputPath = path.resolve(process.cwd(), options.output)
