@@ -12,6 +12,8 @@ export function encryptCommand() {
     .alias('enc')
     .requiredOption('-i, --input <file>', 'Input path')
     .requiredOption('-o, --output <file>', 'Output path')
+    .option('-s, --silent', 'Silent output verbosity')
+    .option('--dev', 'Dev output verbosity')
     .action(async (options) => {
       const inputPath = path.resolve(process.cwd(), options.input);
       const outputPath = path.resolve(process.cwd(), options.output);
@@ -36,6 +38,8 @@ export function decryptCommand() {
     .alias('dec')
     .requiredOption('-i, --input <file>', 'Input path')
     .requiredOption('-o, --output <file>', 'Output path')
+    .option('-s, --silent', 'Silent output verbosity')
+    .option('--dev', 'Dev output verbosity')
     .action(async (options) => {
       const inputPath = path.resolve(process.cwd(), options.input);
       const outputPath = path.resolve(process.cwd(), options.output);
