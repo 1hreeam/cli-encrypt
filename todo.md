@@ -1,5 +1,6 @@
 # TODO
 
+- Refactor ❌
 - Logging (`chalk` + `ora`) ✅
 - Logging modes (`--verbose` `--silent`)
 - aliases (`enc`, `dec`) ✅

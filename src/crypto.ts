@@ -3,12 +3,13 @@ import crypto from 'crypto';
 import { readFileSync, writeFileSync } from 'fs';
 import ora from 'ora';
 
-const ora_delay = 300;
+const ora_delay = 200;
 
 export async function encryptFile(inputPath: string, outputPath: string, password: string) {
   const inputBuffer = readFileSync(inputPath);
 
   const spinnerIV = ora('Generating initialization vector...').start();
+
   // IV - Initialization Vector
   const iv = crypto.randomBytes(12);
   const salt = crypto.randomBytes(16);
@@ -16,15 +17,9 @@ export async function encryptFile(inputPath: string, outputPath: string, passwor
   await new Promise((r) => setTimeout(r, ora_delay));
   spinnerIV.succeed('Generated Initialization Vector');
 
-  const spinnerKey = ora('Generating key...').start();
-
-  const key = crypto.scryptSync(password, salt, 32);
-
-  await new Promise((r) => setTimeout(r, ora_delay));
-  spinnerKey.succeed('Generated Key');
-
   const spinnerEncrypting = ora('Encrypting data...').start();
 
+  const key = crypto.scryptSync(password, salt, 32);
   const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
   const encrypted = Buffer.concat([cipher.update(inputBuffer), cipher.final()]);
   const authTag = cipher.getAuthTag();
@@ -49,16 +44,11 @@ export async function decryptFile(inputPath: string, outputPath: string, passwor
   await new Promise((r) => setTimeout(r, ora_delay));
   spinner1.succeed('Retrieved encryption bytes');
 
-  const spinnerKey = ora('Generating key...').start();
-
-  const key = crypto.scryptSync(password, salt, 32);
-
-  await new Promise((r) => setTimeout(r, ora_delay));
-  spinnerKey.succeed('Generated Key');
-
   const spinnerDec = ora('Decrypting...').start();
 
+  const key = crypto.scryptSync(password, salt, 32);
   const decipher = crypto.createDecipheriv('aes-256-gcm', key, iv);
+
   try {
     decipher.setAuthTag(authTag);
   } catch (err) {
