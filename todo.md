@@ -1,12 +1,10 @@
 # TODO
 
-- Refactor ❌
-- Logging (`chalk` + `ora`) ✅
-- Logging modes (`--verbose` `--silent`)
-- aliases (`enc`, `dec`) ✅
 - Deafult output file naming (`.enc`, `.dec`) or optional
+- Logging (`chalk` + `ora`) ✅
+- Logging modes (`--verbose` `--silent`) ✅
+- aliases (`enc`, `dec`) ✅
 - Interactive mode (`inquirer`, `readline`) ✅
-- Set tabLength to 4 instead of 2
 
 ---
 
