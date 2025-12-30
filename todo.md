@@ -6,6 +6,7 @@
 - aliases (`enc`, `dec`) ✅
 - Deafult output file naming (`.enc`, `.dec`) or optional
 - Interactive mode (`inquirer`, `readline`) ✅
+- Set tabLength to 4 instead of 2
 
 ---
 
