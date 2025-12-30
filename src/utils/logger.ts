@@ -39,3 +39,10 @@ export class Logger {
     }
   }
 }
+
+export function resolveLogLevel(silent?: boolean, verbose?: number): LogLevel {
+  if (silent) return LogLevel.ERROR;
+  if (verbose && verbose >= 2) return LogLevel.TRACE;
+  if (verbose === 1) return LogLevel.DEBUG;
+  return LogLevel.INFO;
+}
