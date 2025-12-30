@@ -5,11 +5,7 @@ import ora from 'ora';
 
 const ora_delay = 300;
 
-export async function encryptFile(
-  inputPath: string,
-  outputPath: string,
-  password: string,
-) {
+export async function encryptFile(inputPath: string, outputPath: string, password: string) {
   const inputBuffer = readFileSync(inputPath);
 
   const spinnerIV = ora('Generating initialization vector...').start();
@@ -40,11 +36,7 @@ export async function encryptFile(
   spinnerEncrypting.succeed(chalk.greenBright('Encrypted sucessfully'));
 }
 
-export async function decryptFile(
-  inputPath: string,
-  outputPath: string,
-  password: string,
-) {
+export async function decryptFile(inputPath: string, outputPath: string, password: string) {
   const inputBuffer = readFileSync(inputPath);
 
   const spinner1 = ora('Retrieving encryption data...');

@@ -1,8 +1,7 @@
 {
   "bracketSpacing": true,
   "experimentalOperatorPosition": "start",
-  "printWidth": 80,
-  "proseWrap": "always",
+  "printWidth": 100,
   "semi": true,
   "singleQuote": true,
   "tabWidth": 2,
