@@ -10,7 +10,7 @@ export async function encryptFile(
   inputPath: string,
   outputPath: string,
   password: string,
-  logger: Logger
+  logger: Logger,
 ) {
   const inputBuffer = readFileSync(inputPath);
 
@@ -45,7 +45,7 @@ export async function decryptFile(
   inputPath: string,
   outputPath: string,
   password: string,
-  logger: Logger
+  logger: Logger,
 ) {
   const inputBuffer = readFileSync(inputPath);
 

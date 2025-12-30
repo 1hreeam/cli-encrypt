@@ -7,7 +7,7 @@ export enum LogLevel {
 }
 
 export class Logger {
-  constructor(private level: LogLevel, private spinner?: boolean) {}
+  constructor(private level: LogLevel) {}
 
   error(msg: string) {
     if (this.level >= LogLevel.ERROR) {
