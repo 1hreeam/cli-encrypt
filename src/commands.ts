@@ -1,11 +1,10 @@
-import { Command } from 'commander';
+import type { Command } from 'commander';
 import inquirer from 'inquirer';
 import path from 'path';
 import { encryptFile, decryptFile } from './crypto.js';
+import { resolveLogLevel, Logger } from './utils/logger.js';
 
-const program = new Command();
-
-export function encryptCommand() {
+export function encryptCommand(program: Command) {
   program
     .command('encrypt')
     .alias('e')
@@ -13,10 +12,13 @@ export function encryptCommand() {
     .requiredOption('-i, --input <file>', 'Input path')
     .requiredOption('-o, --output <file>', 'Output path')
     .option('-s, --silent', 'Silent output verbosity')
-    .option('-v, --verbose <number>', 'Output verbosity level')
+    .option('-v, --verbose <number>', 'Output verbosity level', parseInt)
     .action(async (options) => {
       const inputPath = path.resolve(process.cwd(), options.input);
       const outputPath = path.resolve(process.cwd(), options.output);
+
+      const logLevel = resolveLogLevel(options.silent, options.verbose);
+      const logger = new Logger(logLevel);
 
       const answer = await inquirer.prompt([
         {
@@ -27,11 +29,11 @@ export function encryptCommand() {
         },
       ]);
 
-      encryptFile(inputPath, outputPath, answer.password);
+      encryptFile(inputPath, outputPath, answer.password, logger);
     });
 }
 
-export function decryptCommand() {
+export function decryptCommand(program: Command) {
   program
     .command('decrypt')
     .alias('d')
@@ -44,6 +46,9 @@ export function decryptCommand() {
       const inputPath = path.resolve(process.cwd(), options.input);
       const outputPath = path.resolve(process.cwd(), options.output);
 
+      const logLevel = resolveLogLevel(options.silent, options.verbose);
+      const logger = new Logger(logLevel);
+
       const answer = await inquirer.prompt([
         {
           type: 'password',
@@ -53,6 +58,6 @@ export function decryptCommand() {
         },
       ]);
 
-      decryptFile(inputPath, outputPath, answer.password);
+      decryptFile(inputPath, outputPath, answer.password, logger);
     });
 }
