@@ -8,7 +8,7 @@ CLI tool to encrypt and decrypt files.
 cli-encrypt -i <input-path> -o <output-path>
 ```
 
-There's also two logging mode flags:
+There're also two logging mode flags:
 
 - `-s` or `--silent` - for no output messages (excluding error messages)
 - `-v` or `--verbose` `type: number` - level of verbosity of output `(0-4)`
