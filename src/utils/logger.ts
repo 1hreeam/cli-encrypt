@@ -7,7 +7,7 @@ export enum LogLevel {
 }
 
 export class Logger {
-  constructor(private level: LogLevel) {}
+  constructor(private level: LogLevel, private spinner?: boolean) {}
 
   error(msg: string) {
     if (this.level >= LogLevel.ERROR) {
@@ -45,4 +45,9 @@ export function resolveLogLevel(silent?: boolean, verbose?: number): LogLevel {
   if (verbose && verbose >= 2) return LogLevel.TRACE;
   if (verbose === 1) return LogLevel.DEBUG;
   return LogLevel.INFO;
+}
+
+export function validateVerboseOption(verbose: number) {
+  if (verbose > 4) return false;
+  return true;
 }
