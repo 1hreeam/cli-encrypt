@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 export enum LogLevel {
   ERROR = 0,
   WARN = 1,
@@ -11,31 +13,31 @@ export class Logger {
 
   error(msg: string) {
     if (this.level >= LogLevel.ERROR) {
-      console.error(msg);
+      console.error(chalk('[ERROR]'), msg);
     }
   }
 
   warn(msg: string) {
     if (this.level >= LogLevel.WARN) {
-      console.warn(msg);
+      console.warn(chalk.yellow('[WARN]'), msg);
     }
   }
 
   info(msg: string) {
     if (this.level >= LogLevel.INFO) {
-      console.log(msg);
+      console.log('[INFO]', msg);
     }
   }
 
   debug(msg: string) {
     if (this.level >= LogLevel.DEBUG) {
-      console.log(msg);
+      console.log(chalk.green('[DEBUG]'), msg);
     }
   }
 
   trace(msg: string) {
     if (this.level >= LogLevel.TRACE) {
-      console.log(msg);
+      console.log(chalk.dim('[TRACE]', msg));
     }
   }
 }
