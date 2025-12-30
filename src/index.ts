@@ -3,14 +3,11 @@
 import { Command } from 'commander';
 import { decryptCommand, encryptCommand } from './commands.js';
 
-const program = new Command()
+const program = new Command();
 
-program
-    .name("cli-encrypt")
-    .description("Encrypt and decrypt files")
-    .version("1.0.0")
+program.name('cli-encrypt').description('Encrypt and decrypt files').version('1.0.0');
 
-encryptCommand(program)
-decryptCommand(program)
+encryptCommand();
+decryptCommand();
 
-program.parse()
+program.parse();
