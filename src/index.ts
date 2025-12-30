@@ -7,7 +7,7 @@ const program = new Command();
 
 program.name('cli-encrypt').description('Encrypt and decrypt files').version('1.0.0');
 
-encryptCommand(program);
-decryptCommand(program);
+encryptCommand();
+decryptCommand();
 
 program.parse();

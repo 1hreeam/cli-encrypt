@@ -1,9 +1,11 @@
-import type { Command } from 'commander';
+import { Command } from 'commander';
 import inquirer from 'inquirer';
 import path from 'path';
 import { encryptFile, decryptFile } from './crypto.js';
 
-export function encryptCommand(program: Command) {
+const program = new Command();
+
+export function encryptCommand() {
   program
     .command('encrypt')
     .alias('e')
@@ -27,7 +29,7 @@ export function encryptCommand(program: Command) {
     });
 }
 
-export function decryptCommand(program: Command) {
+export function decryptCommand() {
   program
     .command('decrypt')
     .alias('d')
