@@ -12,7 +12,6 @@ cli-encrypt -i <input-path> -o <output-path>
 
 - Logging modes (`--verbose` `--silent`)
 - Deafult output file naming (`.enc`, `.dec`)
-- Interactive mode (inquirer, readline) ✅
 - Large files support (rn reading the whole file into memory)
 - Compression
 
@@ -20,4 +19,4 @@ more in [todo.md](./todo.md)
 
 ---
 
-*Project built with `typescript` and `commander`*
+_Project built with `typescript`, `commander`, `ora`, `inquirer`_
