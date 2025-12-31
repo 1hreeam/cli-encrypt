@@ -12,14 +12,18 @@ Usage:
 cli-encrypt encrypt -i <inputPath> [options]
 ```
 
-There are aliases for `encrypt` command: `enc` & `e`. <br>
-As well as for `decrypt`: `dec` & `d`
-
 ### Decryption
 
 ```bash
 cli-encrypt decrypt -i <inputPath> [options]
 ```
+
+There're aliases for both commands:
+
+| `encrypt` | `decrypt` |
+| --------- | --------- |
+| `enc`     | `dec`     |
+| `d`       | `d`       |
 
 ### Options
 
