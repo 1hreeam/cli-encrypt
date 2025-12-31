@@ -1,10 +1,6 @@
 # TODO
 
-- Deafult output file naming (`.enc`, `.dec`) or optional
-- Logging (`chalk` + `ora`) ✅
-- Logging modes (`--verbose` `--silent`) ✅
-- aliases (`enc`, `dec`) ✅
-- Interactive mode (`inquirer`, `readline`) ✅
+- Create tests for the app
 
 ---
 

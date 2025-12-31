@@ -2,10 +2,39 @@
 
 CLI tool to encrypt and decrypt files.
 
-## How to use?
+## Usage
+
+### Encryption
+
+Usage:
 
 ```bash
-cli-encrypt -i <input-path> -o <output-path>
+cli-encrypt encrypt -i <inputPath> [options]
+```
+
+There are aliases for `encrypt` command: `enc` & `e`. <br>
+As well as for `decrypt`: `dec` & `d`
+
+### Decryption
+
+```bash
+cli-encrypt decrypt -i <inputPath> [options]
+```
+
+### Options
+
+```bash
+-o, --output <file>     Output path
+-s, --silent            Silent output verbosity
+-v, --verbose <number>  Output verbosity level
+```
+
+If no `--output` is provided the output file will be in the input file directory with `.enc` or `.dec` extension.
+
+Example:
+
+```bash
+example.md >> example.enc.md
 ```
 
 There're also two logging mode flags:
@@ -15,7 +44,6 @@ There're also two logging mode flags:
 
 ## Upcoming features
 
-- Deafult output file naming (`.enc`, `.dec`)
 - Large files support (rn reading the whole file into memory)
 - Compression
 
