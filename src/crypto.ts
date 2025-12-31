@@ -2,8 +2,6 @@ import crypto from 'crypto';
 import { readFileSync, writeFileSync } from 'fs';
 import type { Logger } from './utils/logger.js';
 
-const ora_delay = 200;
-
 export async function encryptFile(
   inputPath: string,
   outputPath: string,
@@ -18,7 +16,7 @@ export async function encryptFile(
   const iv = crypto.randomBytes(12);
   const salt = crypto.randomBytes(16);
 
-  logger.info('Generated IV');
+  logger.trace('Generated IV');
 
   const key = crypto.scryptSync(password, salt, 32);
   const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
