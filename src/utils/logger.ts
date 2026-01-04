@@ -13,7 +13,7 @@ export class Logger {
 
   error(msg: string) {
     if (this.level >= LogLevel.ERROR) {
-      console.error(chalk('[ERROR]'), msg);
+      console.error(chalk.red('[ERROR]'), msg);
     }
   }
 
@@ -25,7 +25,7 @@ export class Logger {
 
   info(msg: string) {
     if (this.level >= LogLevel.INFO) {
-      console.log('[INFO]', msg);
+      console.log(chalk.blue('[INFO]'), msg);
     }
   }
 

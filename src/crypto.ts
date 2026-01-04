@@ -10,20 +10,20 @@ export async function encryptFile(
 ) {
   const inputBuffer = readFileSync(inputPath);
 
-  logger.trace('Loaded the file into the buffer');
+  logger.debug('Loaded the file into the buffer');
 
   // IV - Initialization Vector
   const iv = crypto.randomBytes(12);
   const salt = crypto.randomBytes(16);
 
-  logger.trace('Generated IV');
+  logger.debug('Generated IV');
 
   const key = crypto.scryptSync(password, salt, 32);
   const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
   const encrypted = Buffer.concat([cipher.update(inputBuffer), cipher.final()]);
   const authTag = cipher.getAuthTag();
 
-  logger.trace('Created key and authTag');
+  logger.debug('Created key and authTag');
 
   const outputBuffer = Buffer.concat([iv, salt, authTag, encrypted]);
   writeFileSync(outputPath, outputBuffer);
@@ -44,12 +44,12 @@ export async function decryptFile(
   const authTag = inputBuffer.subarray(28, 44);
   const cipherText = inputBuffer.subarray(44);
 
-  logger.trace('Retieved secret data from the file');
+  logger.debug('Retieved secret data from the file');
 
   const key = crypto.scryptSync(password, salt, 32);
   const decipher = crypto.createDecipheriv('aes-256-gcm', key, iv);
 
-  logger.trace('Generated key');
+  logger.debug('Generated key');
 
   try {
     decipher.setAuthTag(authTag);
