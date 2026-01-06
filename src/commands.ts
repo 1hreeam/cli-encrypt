@@ -3,6 +3,7 @@ import inquirer from 'inquirer';
 import path from 'path';
 import { encryptFile, decryptFile } from './crypto.js';
 import { resolveLogLevel, Logger } from './utils/logger.js';
+import { resolveOutputPath } from './utils/naming.js';
 
 export function encryptCommand(program: Command) {
   program
@@ -15,18 +16,7 @@ export function encryptCommand(program: Command) {
     .option('-v, --verbose <number>', 'Output verbosity level', parseInt)
     .action(async (options) => {
       const inputPath = path.resolve(process.cwd(), options.input);
-
-      let outputPath: string;
-      if (!options.output) {
-        const dir = path.dirname(inputPath);
-        const ext = path.extname(inputPath);
-        const base = path.basename(inputPath);
-
-        const outputFile = ext ? `${base}.enc${ext}` : `${base}.enc`;
-        outputPath = path.resolve(dir, outputFile);
-      } else {
-        outputPath = path.resolve(process.cwd(), options.output);
-      }
+      const outputPath = resolveOutputPath(options.output, inputPath, 'enc');
 
       const logLevel = resolveLogLevel(options.silent, options.verbose);
       const logger = new Logger(logLevel);
@@ -55,18 +45,7 @@ export function decryptCommand(program: Command) {
     .option('-v, --verbose <number>', 'Output verbosity level')
     .action(async (options) => {
       const inputPath = path.resolve(process.cwd(), options.input);
-
-      let outputPath: string;
-      if (!options.output) {
-        const dir = path.dirname(inputPath);
-        const ext = path.extname(inputPath);
-        const base = path.basename(inputPath);
-
-        const outputFile = ext ? `${base}.dec${ext}` : `${base}.dec`;
-        outputPath = path.resolve(dir, outputFile);
-      } else {
-        outputPath = path.resolve(process.cwd(), options.output);
-      }
+      const outputPath = resolveOutputPath(options.output, inputPath, 'dec');
 
       const logLevel = resolveLogLevel(options.silent, options.verbose);
       const logger = new Logger(logLevel);
