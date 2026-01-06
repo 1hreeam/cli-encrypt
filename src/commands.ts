@@ -3,7 +3,7 @@ import inquirer from 'inquirer';
 import path from 'path';
 import { encryptFile, decryptFile } from './crypto.js';
 import { resolveLogLevel, Logger } from './utils/logger.js';
-import { resolveOutputPath } from './utils/naming.js';
+import { resolvePaths } from './utils/naming.js';
 
 export function encryptCommand(program: Command) {
   program
@@ -15,8 +15,7 @@ export function encryptCommand(program: Command) {
     .option('-s, --silent', 'Silent output verbosity')
     .option('-v, --verbose <number>', 'Output verbosity level', parseInt)
     .action(async (options) => {
-      const inputPath = path.resolve(process.cwd(), options.input);
-      const outputPath = resolveOutputPath(options.output, inputPath, 'enc');
+      const [inputPath, outputPath] = resolvePaths(options.output, options.input, 'enc');
 
       const logLevel = resolveLogLevel(options.silent, options.verbose);
       const logger = new Logger(logLevel);
@@ -30,7 +29,7 @@ export function encryptCommand(program: Command) {
         },
       ]);
 
-      encryptFile(inputPath, outputPath, answer.password, logger);
+      encryptFile(inputPath!, outputPath!, answer.password, logger);
     });
 }
 
@@ -44,8 +43,7 @@ export function decryptCommand(program: Command) {
     .option('-s, --silent', 'Silent output verbosity')
     .option('-v, --verbose <number>', 'Output verbosity level')
     .action(async (options) => {
-      const inputPath = path.resolve(process.cwd(), options.input);
-      const outputPath = resolveOutputPath(options.output, inputPath, 'dec');
+      const [inputPath, outputPath] = resolvePaths(options.output, options.input, 'dec');
 
       const logLevel = resolveLogLevel(options.silent, options.verbose);
       const logger = new Logger(logLevel);
@@ -59,6 +57,6 @@ export function decryptCommand(program: Command) {
         },
       ]);
 
-      decryptFile(inputPath, outputPath, answer.password, logger);
+      decryptFile(inputPath!, outputPath!, answer.password, logger);
     });
 }
